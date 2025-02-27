@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Saudação estilizada -->
+        <p th:text="'Olá, ' + ${nome} + '!'" class="h4 text-center mb-4"></p>
+
+        <form th:action="@{/}" method="get" class="card p-4 shadow">
+            <div class="mb-3">
+                <!-- Seleção estilizada -->
+                <label for="escolha" class="form-label">Selecione um nome:</label>
+                <select id="escolha" name="nome" class="form-select">
+                    <option th:each="entry : ${dados.entrySet()}" 
+                        th:value="${entry.key}" 
+                        th:text="${entry.value}">
+                    </option>
+                </select>
+            </div>
+            <!-- Botões estilizados -->
+            <div class="d-flex justify-content-between">
+                <!-- Formulário de logout separado -->
+                <form th:action="@{/logout}" method="get">
+                    <button class="btn btn-primary" type="submit">Sair</button>
+                </form>
+                
+                <!-- Link para a página "Info" -->
+                <a th:href="@{/info}" class="btn btn-secondary">Info</a>
+            </div>
+        </form>
+
+        <!-- Aula 12 - Tratamento de Erros -->
+        <div class="text-center mt-5">
+            <h1>Aula 12 - Tratamento de Erros</h1>
+            <a href="/erro.html" class="btn btn-warning">Erro HTML</a>
+            <a href="/erro.html" class="btn btn-danger">Erro Java</a>
+            <a href="/dashboard" class="btn btn-info">Dashboard</a>
+
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
